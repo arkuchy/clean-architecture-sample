@@ -4,29 +4,23 @@ package controller
 controller パッケージは，入力に対するアダプターです．
 
 ここでは，インプットポートとアウトプットポートを組み立てて，
-インプットポートを実行する．
-ユースケースレイヤからの戻り値を出力する必要はなく，
-純粋にhttpを受け取り，ユースケースを実行する．
+インプットポートを実行します．
+ユースケースレイヤからの戻り値を受け取って出力する必要はなく，
+純粋にhttpを受け取り，ユースケースを実行します．
 */
 
 import (
 	"fmt"
 	"net/http"
 
-	"github.com/ari1021/clean-architecture/usecase"
+	"github.com/ari1021/clean-architecture/usecase/port"
 )
 
 type User struct {
-	OutputFactory func(w http.ResponseWriter) usecase.UserOutputPort
+	OutputFactory func(w http.ResponseWriter) port.UserOutputPort
 	// -> presenter.NewUser
-	InputFactory func(o usecase.UserOutputPort) usecase.UserInputPort
+	InputFactory func(o port.UserOutputPort) port.UserInputPort
 	// -> controller.NewUser
-}
-
-func NewUser(outputPort usecase.UserOutputPort) usecase.UserInputPort {
-	return &usecase.User{
-		OutputPort: outputPort,
-	}
 }
 
 func (u *User) GetUserByID(w http.ResponseWriter, r *http.Request) {

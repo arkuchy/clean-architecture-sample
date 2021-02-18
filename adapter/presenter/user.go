@@ -1,18 +1,24 @@
 package presenter
 
+/*
+presenter パッケージは，出力に対するアダプターです．
+
+ここでは，アウトプットポートを実装します(interfaceを満たすようにmethodを追加するということ)
+*/
+
 import (
 	"fmt"
 	"net/http"
 
 	"github.com/ari1021/clean-architecture/entity"
-	"github.com/ari1021/clean-architecture/usecase"
+	"github.com/ari1021/clean-architecture/usecase/port"
 )
 
 type User struct {
 	w http.ResponseWriter
 }
 
-func NewUser(w http.ResponseWriter) usecase.UserOutputPort {
+func NewUser(w http.ResponseWriter) port.UserOutputPort {
 	return &User{
 		w: w,
 	}

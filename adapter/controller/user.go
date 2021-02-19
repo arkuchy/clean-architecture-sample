@@ -10,7 +10,6 @@ controller パッケージは，入力に対するアダプターです．
 */
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/ari1021/clean-architecture/usecase/port"
@@ -29,8 +28,5 @@ func (u *User) GetUserByID(w http.ResponseWriter, r *http.Request) {
 
 	outputPort := u.OutputFactory(w)
 	inputPort := u.InputFactory(outputPort)
-	err := inputPort.GetUserByID(userID)
-	if err != nil {
-		fmt.Fprint(w, "error")
-	}
+	inputPort.GetUserByID(userID)
 }

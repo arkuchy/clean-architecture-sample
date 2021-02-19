@@ -26,5 +26,11 @@ func NewUser(w http.ResponseWriter) port.UserOutputPort {
 
 // usecase.UserOutputPortを実装している
 func (u *User) Render(user *entity.User) {
+	u.w.WriteHeader(http.StatusOK)
 	fmt.Fprint(u.w, user.Name) // httpでentity.User.Nameを出力
+}
+
+func (u *User) RenderError(err error) {
+	u.w.WriteHeader(http.StatusInternalServerError)
+	fmt.Fprint(u.w, err)
 }

@@ -8,6 +8,8 @@ interactorはアウトプットポートに依存し(importするということ
 */
 
 import (
+	"errors"
+
 	"github.com/ari1021/clean-architecture/entity"
 	"github.com/ari1021/clean-architecture/usecase/port"
 )
@@ -23,13 +25,18 @@ func NewUser(outputPort port.UserOutputPort) port.UserInputPort {
 }
 
 // usecase.UserInputPortを実装している
-func (u *User) GetUserByID(userID int) error {
+func (u *User) GetUserByID(userID int) {
 	// u.outputPort.Render(user)の引数に指定されているuserを取得するビジネスロジックが入る想定
 	// ここでentity.UserオブジェクトをDBなどから取得し，usecase.UserOutputPort.Render()に渡す
 	user := &entity.User{
 		ID:   1,
 		Name: "testName",
 	}
+	// 様々な処理が入って，err!=nilであればRenderErrorが呼ばれる
+	err := errors.New("test error")
+	if err != nil {
+		u.OutputPort.RenderError(err)
+		return
+	}
 	u.OutputPort.Render(user)
-	return nil
 }

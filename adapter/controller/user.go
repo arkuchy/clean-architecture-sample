@@ -19,14 +19,15 @@ import (
 
 type User struct {
 	OutputFactory func(w http.ResponseWriter) port.UserOutputPort
-	// -> presenter.NewUser
+	// -> presenter.NewUserOutputPort
 	InputFactory func(o port.UserOutputPort, u port.UserRepository) port.UserInputPort
-	// -> interactor.NewUser
+	// -> interactor.NewUserInputPort
 	RepoFactory func(c *sql.DB) port.UserRepository
 	// -> gateway.NewUserRepository
 	Conn *sql.DB
 }
 
+// GetUserByID は，httpを受け取り，portを組み立てて，inputPort.GetUserByIDを呼び出します．
 func (u *User) GetUserByID(w http.ResponseWriter, r *http.Request) {
 	userID := strings.TrimPrefix(r.URL.Path, "/user/")
 

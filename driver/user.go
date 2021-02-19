@@ -1,5 +1,9 @@
 package driver
 
+/*
+driver パッケージは，技術的な実装を持ちます．．
+*/
+
 import (
 	"database/sql"
 	"log"
@@ -14,6 +18,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+// Serve はserverを起動させます．
 func Serve(addr string) {
 	conn, err := sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/clean_architecture")
 	if err != nil {
@@ -21,8 +26,8 @@ func Serve(addr string) {
 		return
 	}
 	user := controller.User{
-		OutputFactory: presenter.NewUser,
-		InputFactory:  interactor.NewUser,
+		OutputFactory: presenter.NewUserOutputPort,
+		InputFactory:  interactor.NewUserInputPort,
 		RepoFactory:   gateway.NewUserRepository,
 		Conn:          conn,
 	}

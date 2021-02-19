@@ -1,5 +1,9 @@
 package port
 
+/*
+port パッケージは，出力や入力などのポート(interface)を提供します．
+*/
+
 import "github.com/ari1021/clean-architecture/entity"
 
 type UserInputPort interface {

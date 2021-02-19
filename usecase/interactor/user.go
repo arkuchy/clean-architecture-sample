@@ -16,7 +16,8 @@ type User struct {
 	UserRepo   port.UserRepository
 }
 
-func NewUser(outputPort port.UserOutputPort, userRepository port.UserRepository) port.UserInputPort {
+// NewUserInputPort はUserInputPortを取得します．
+func NewUserInputPort(outputPort port.UserOutputPort, userRepository port.UserRepository) port.UserInputPort {
 	return &User{
 		OutputPort: outputPort,
 		UserRepo:   userRepository,
@@ -24,6 +25,7 @@ func NewUser(outputPort port.UserOutputPort, userRepository port.UserRepository)
 }
 
 // usecase.UserInputPortを実装している
+// GetUserByID は，UserRepo.GetUserByIDを呼び出し，その結果をOutputPort.Render or OutputPort.RenderErrorに渡します．
 func (u *User) GetUserByID(userID string) {
 	user, err := u.UserRepo.GetUserByID(userID)
 	if err != nil {

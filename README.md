@@ -38,4 +38,5 @@
 
 ## パッケージ同士の関係
 実線は依存，点線は実装を表す．
+userRepositoryを，usecaseレイヤではなく，entityレイヤとすることもある．
 ![architecture](https://user-images.githubusercontent.com/45930091/108508403-1a653780-72ff-11eb-83de-7a310dafe11c.png)

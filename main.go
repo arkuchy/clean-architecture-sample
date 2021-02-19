@@ -1,12 +1,12 @@
 package main
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/ari1021/clean-architecture/driver"
 )
 
 func main() {
-	fmt.Println("Server running...")
+	log.Println("Server running...")
 	driver.Serve(":8080")
 }

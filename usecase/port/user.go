@@ -3,7 +3,7 @@ package port
 import "github.com/ari1021/clean-architecture/entity"
 
 type UserInputPort interface {
-	GetUserByID(userID int)
+	GetUserByID(userID string)
 }
 
 type UserOutputPort interface {
@@ -13,5 +13,5 @@ type UserOutputPort interface {
 
 // userのCRUDに対するDB用のポート
 type UserRepository interface {
-	GetUserByID(userID int) (*entity.User, error)
+	GetUserByID(userID string) (*entity.User, error)
 }

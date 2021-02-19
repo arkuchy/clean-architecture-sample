@@ -12,6 +12,7 @@ controller パッケージは，入力に対するアダプターです．
 import (
 	"database/sql"
 	"net/http"
+	"strings"
 
 	"github.com/ari1021/clean-architecture/usecase/port"
 )
@@ -23,12 +24,11 @@ type User struct {
 	// -> interactor.NewUser
 	RepoFactory func(c *sql.DB) port.UserRepository
 	// -> gateway.NewUserRepository
-	Conn *sql.DB //あってるかわからん
+	Conn *sql.DB
 }
 
 func (u *User) GetUserByID(w http.ResponseWriter, r *http.Request) {
-	// userID := getUserIDFrom(r) // requestからuserIDなどの情報を取得する
-	userID := 1
+	userID := strings.TrimPrefix(r.URL.Path, "/user/")
 
 	outputPort := u.OutputFactory(w)
 	repository := u.RepoFactory(u.Conn)

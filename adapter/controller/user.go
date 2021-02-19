@@ -10,6 +10,7 @@ controller パッケージは，入力に対するアダプターです．
 */
 
 import (
+	"database/sql"
 	"net/http"
 
 	"github.com/ari1021/clean-architecture/usecase/port"
@@ -18,8 +19,11 @@ import (
 type User struct {
 	OutputFactory func(w http.ResponseWriter) port.UserOutputPort
 	// -> presenter.NewUser
-	InputFactory func(o port.UserOutputPort) port.UserInputPort
-	// -> controller.NewUser
+	InputFactory func(o port.UserOutputPort, u port.UserRepository) port.UserInputPort
+	// -> interactor.NewUser
+	RepoFactory func(c *sql.DB) port.UserRepository
+	// -> gateway.NewUserRepository
+	Conn *sql.DB //あってるかわからん
 }
 
 func (u *User) GetUserByID(w http.ResponseWriter, r *http.Request) {
@@ -27,6 +31,7 @@ func (u *User) GetUserByID(w http.ResponseWriter, r *http.Request) {
 	userID := 1
 
 	outputPort := u.OutputFactory(w)
-	inputPort := u.InputFactory(outputPort)
+	repository := u.RepoFactory(u.Conn)
+	inputPort := u.InputFactory(outputPort, repository)
 	inputPort.GetUserByID(userID)
 }

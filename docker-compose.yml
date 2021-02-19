@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: "password"
+    links:
+      - mysql
+    ports:
+      - 4000:80
+
+volumes:
+  db-data:
+    driver: local

@@ -8,7 +8,9 @@ interactorはアウトプットポートに依存し(importするということ
 */
 
 import (
-	"github.com/ari1021/clean-architecture/usecase/port"
+	"context"
+
+	"github.com/ari1021/clean-architecture-sample-sample/usecase/port"
 )
 
 type User struct {
@@ -26,8 +28,8 @@ func NewUserInputPort(outputPort port.UserOutputPort, userRepository port.UserRe
 
 // usecase.UserInputPortを実装している
 // GetUserByID は，UserRepo.GetUserByIDを呼び出し，その結果をOutputPort.Render or OutputPort.RenderErrorに渡します．
-func (u *User) GetUserByID(userID string) {
-	user, err := u.UserRepo.GetUserByID(userID)
+func (u *User) GetUserByID(ctx context.Context, userID string) {
+	user, err := u.UserRepo.GetUserByID(ctx, userID)
 	if err != nil {
 		u.OutputPort.RenderError(err)
 		return

@@ -5,13 +5,14 @@ gateway パッケージは，DB操作に対するアダプターです．
 */
 
 import (
+	"context"
 	"database/sql"
 	"errors"
 	"fmt"
 	"log"
 
-	"github.com/ari1021/clean-architecture/entity"
-	"github.com/ari1021/clean-architecture/usecase/port"
+	"github.com/ari1021/clean-architecture-sample-sample/entity"
+	"github.com/ari1021/clean-architecture-sample-sample/usecase/port"
 )
 
 type UserRepository struct {
@@ -26,9 +27,9 @@ func NewUserRepository(conn *sql.DB) port.UserRepository {
 }
 
 // GetUserByID はDBからデータを取得します．
-func (u *UserRepository) GetUserByID(userID string) (*entity.User, error) {
+func (u *UserRepository) GetUserByID(ctx context.Context, userID string) (*entity.User, error) {
 	conn := u.GetDBConn()
-	row := conn.QueryRow("SELECT * FROM `user` WHERE id=?", userID)
+	row := conn.QueryRowContext(ctx, "SELECT * FROM `user` WHERE id=?", userID)
 	user := entity.User{}
 	err := row.Scan(&user.ID, &user.Name)
 	if err != nil {

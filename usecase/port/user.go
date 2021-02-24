@@ -4,10 +4,14 @@ package port
 port パッケージは，出力や入力などのポート(interface)を提供します．
 */
 
-import "github.com/ari1021/clean-architecture/entity"
+import (
+	"context"
+
+	"github.com/ari1021/clean-architecture-sample-sample/entity"
+)
 
 type UserInputPort interface {
-	GetUserByID(userID string)
+	GetUserByID(ctx context.Context, userID string)
 }
 
 type UserOutputPort interface {
@@ -17,5 +21,5 @@ type UserOutputPort interface {
 
 // userのCRUDに対するDB用のポート
 type UserRepository interface {
-	GetUserByID(userID string) (*entity.User, error)
+	GetUserByID(ctx context.Context, userID string) (*entity.User, error)
 }

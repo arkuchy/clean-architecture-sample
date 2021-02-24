@@ -11,12 +11,11 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/ari1021/clean-architecture/adapter/controller"
-	"github.com/ari1021/clean-architecture/adapter/gateway"
-	"github.com/ari1021/clean-architecture/adapter/presenter"
-	"github.com/ari1021/clean-architecture/usecase/interactor"
-
 	// blank import for MySQL driver
+	"github.com/ari1021/clean-architecture-sample-sample/adapter/controller"
+	"github.com/ari1021/clean-architecture-sample-sample/adapter/gateway"
+	"github.com/ari1021/clean-architecture-sample-sample/adapter/presenter"
+	"github.com/ari1021/clean-architecture-sample-sample/usecase/interactor"
 	_ "github.com/go-sql-driver/mysql"
 )
 

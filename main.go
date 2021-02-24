@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/ari1021/clean-architecture/driver"
+	"github.com/ari1021/clean-architecture-sample-sample/driver"
 	"github.com/joho/godotenv"
 )
 

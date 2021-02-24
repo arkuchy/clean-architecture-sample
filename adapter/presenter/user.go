@@ -10,8 +10,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/ari1021/clean-architecture/entity"
-	"github.com/ari1021/clean-architecture/usecase/port"
+	"github.com/ari1021/clean-architecture-sample-sample/entity"
+	"github.com/ari1021/clean-architecture-sample-sample/usecase/port"
 )
 
 type User struct {

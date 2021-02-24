@@ -14,7 +14,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/ari1021/clean-architecture/usecase/port"
+	"github.com/ari1021/clean-architecture-sample-sample/usecase/port"
 )
 
 type User struct {
@@ -29,10 +29,10 @@ type User struct {
 
 // GetUserByID は，httpを受け取り，portを組み立てて，inputPort.GetUserByIDを呼び出します．
 func (u *User) GetUserByID(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
 	userID := strings.TrimPrefix(r.URL.Path, "/user/")
-
 	outputPort := u.OutputFactory(w)
 	repository := u.RepoFactory(u.Conn)
 	inputPort := u.InputFactory(outputPort, repository)
-	inputPort.GetUserByID(userID)
+	inputPort.GetUserByID(ctx, userID)
 }

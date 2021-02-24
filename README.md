@@ -1,4 +1,4 @@
-# clean-architecture
+# clean-architecture-sample
 ## 使い方
 1. .env.sampleをコピーして .envファイルを作成する
 1. docker-compose up -d

@@ -10,7 +10,7 @@ interactorはアウトプットポートに依存し(importするということ
 import (
 	"context"
 
-	"github.com/ari1021/clean-architecture-sample-sample/usecase/port"
+	"github.com/arkuchy/clean-architecture-sample-sample/usecase/port"
 )
 
 type User struct {

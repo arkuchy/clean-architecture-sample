@@ -7,7 +7,7 @@ port パッケージは，出力や入力などのポート(interface)を提供�
 import (
 	"context"
 
-	"github.com/ari1021/clean-architecture-sample-sample/entity"
+	"github.com/arkuchy/clean-architecture-sample-sample/entity"
 )
 
 type UserInputPort interface {

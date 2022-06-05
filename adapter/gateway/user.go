@@ -11,8 +11,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/ari1021/clean-architecture-sample-sample/entity"
-	"github.com/ari1021/clean-architecture-sample-sample/usecase/port"
+	"github.com/arkuchy/clean-architecture-sample-sample/entity"
+	"github.com/arkuchy/clean-architecture-sample-sample/usecase/port"
 )
 
 type UserRepository struct {

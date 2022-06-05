@@ -1,4 +1,4 @@
-module github.com/ari1021/clean-architecture-sample-sample
+module github.com/arkuchy/clean-architecture-sample-sample
 
 go 1.15
 

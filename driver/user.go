@@ -12,10 +12,10 @@ import (
 	"os"
 
 	// blank import for MySQL driver
-	"github.com/ari1021/clean-architecture-sample-sample/adapter/controller"
-	"github.com/ari1021/clean-architecture-sample-sample/adapter/gateway"
-	"github.com/ari1021/clean-architecture-sample-sample/adapter/presenter"
-	"github.com/ari1021/clean-architecture-sample-sample/usecase/interactor"
+	"github.com/arkuchy/clean-architecture-sample-sample/adapter/controller"
+	"github.com/arkuchy/clean-architecture-sample-sample/adapter/gateway"
+	"github.com/arkuchy/clean-architecture-sample-sample/adapter/presenter"
+	"github.com/arkuchy/clean-architecture-sample-sample/usecase/interactor"
 	_ "github.com/go-sql-driver/mysql"
 )
 

@@ -1,8 +1,38 @@
 # clean-architecture-sample
-## 使い方
+## 起動方法
 1. .env.sampleをコピーして .envファイルを作成する
 1. docker-compose up -d
 1. go run main.go
+
+## 使い方
+APIサーバを起動した後，
+
+```
+http://localhost:8080/user/{userID}
+```
+を叩くことで，`userID`に対応したユーザの`username`が返ってきます．
+
+初期状態では，以下の10人のユーザがDBに登録されています．
+
+| userID | username |
+| ------ | -------- |
+| 1      | name1    |
+| 2      | name2    |
+| 3      | name3    |
+| 4      | name4    |
+| 5      | name5    |
+| 6      | name6    |
+| 7      | name7    |
+| 8      | name8    |
+| 9      | name9    |
+| 10     | name10   |
+
+DBの状態を確認したい場合は，
+
+```
+http://localhots:4000
+```
+にアクセスすることで，phpMyAdminを使用することができます．
 
 ## ディレクトリ構成
 ```bash
